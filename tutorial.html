@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Wave Superposition Demo</title>
+        <title>Phasors and Phi</title>
     </head>
     <body>
-        <p>We will put things here later.</p>
+        <canvas></canvas>
+        <style>
+            canvas
+            {
+                display: block;
+                box-sizing: border-box;
+                border: 1px solid black;
+                width: 100vw;
+                height: 100vh;
+            }
+            
+            html,body
+            {
+                margin: 0px;   
+            }
+        </style>
+        
+        <script>
+            let canvas = document.querySelector("canvas");
+            let ctx = canvas.getContext("2d");
+            
+            let render = () =>
+            {
+                drawAxes();
+                drawArrowPhi(32 * Math.PI / 180, "Phi");
+            };
+            
+            let animationLoop = () =>
+            {
+                if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight)
+                {
+                    canvas.width = canvas.clientWidth;
+                    canvas.height = canvas.clientHeight;
+                }
+                
+                render();
+                
+                requestAnimationFrame(animationLoop);
+            };
+            
+            animationLoop();
+        </script>
     </body>
 </html>
